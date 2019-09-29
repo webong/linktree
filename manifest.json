@@ -1,7 +1,7 @@
 {
-  "name": "linktree",
+  "name": "Link Tree",
   "id": "758460130791334003",
   "api": "1.0.0",
-  "main": "code.js",
-  "ui": "ui.html"
+  "main": "build/main.js",
+  "ui": "build/ui.html"
 }
