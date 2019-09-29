@@ -1,10 +1,7 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
 
 Vue.config.productionTip = false
-
-
-console.log("hello world")
 
 /* eslint-disable no-new */
 new Vue({

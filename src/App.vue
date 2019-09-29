@@ -3,30 +3,35 @@
     <h2>Rectangle Creator</h2>
     <p>
       Count:
-      <input id="count" value="5" />
+      <input type="number" v-model.number="count" value="2" />
     </p>
-    <button id="create">Create</button>
-    <button id="cancel">Cancel</button>
+    <button @click="create">Create</button>
+    <button @click="cancel">Cancel</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "App",
-  created() {
-    document.getElementById("create").onclick = () => {
-      const textbox = document.getElementById("count");
-      const count = parseInt(textbox.value, 10);
+  data() {
+    return {
+      count: 2
+    };
+  },
+  methods: {
+    create: function() {
+      const count = parseInt(this.count, 10);
+      console.log(count);
       parent.postMessage(
         { pluginMessage: { type: "create-rectangles", count } },
         "*"
       );
-    };
-
-    document.getElementById("cancel").onclick = () => {
+    },
+    cancel: function() {
       parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
-    };
-  }
+    }
+  },
+  created() {}
 };
 </script>
 

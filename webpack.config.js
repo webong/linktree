@@ -1,6 +1,6 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 
 module.exports = (env, argv) => ({
@@ -34,7 +34,7 @@ module.exports = (env, argv) => ({
 
     resolve: {
         // Webpack tries these extensions for you if you omit the extension like "import './file'"
-        extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+        extensions: ['.tsx', '.ts', '.jsx', '.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js'
         }
@@ -55,6 +55,19 @@ module.exports = (env, argv) => ({
         new HtmlWebpackInlineSourcePlugin(),
         new VueLoaderPlugin()
     ],
+
+    node: {
+        // prevent webpack from injecting useless setImmediate polyfill because Vue
+        // source contains it (although only uses it if it's native).
+        setImmediate: false,
+        // prevent webpack from injecting mocks to Node native modules
+        // that does not make sense for the client
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty'
+    }
 });
 
 
