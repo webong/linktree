@@ -1,5 +1,6 @@
 <template>
   <div>
+    <img src="./logo.svg" alt="Logo">
     <h2>Rectangle Creator</h2>
     <p>
       Count:
